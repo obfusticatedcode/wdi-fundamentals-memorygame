@@ -39,12 +39,13 @@ var checkForMatch = function(){
 
 
 //flip card function taking cardId parameter
-var flipCard = function(cardId){
-
-
+var flipCard = function(){
+var cardId = this.getAttribute('data-id');
 //push the cards[cardId] into the cardsInPlay array
 cardsInPlay.push(cards[cardId].rank);
-
+//set the click img
+this.setAttribute('src',cards[cardId].cardImage); 
+//checking if 2 cards have been played
 if (cardsInPlay.length === 2){
 	checkForMatch();
 }
@@ -56,8 +57,21 @@ console.log(cards[cardId].suit);
 
 }//end of flipCard function
 
-//calling the flipCard function twice
-flipCard(0); 
-flipCard(2); 
+//function that will create the game board
+var createBoard = function(){
+
+	for (var i = 0; i < cards.length; i++) {
+		cards[i]
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', 'images/back.png');
+		cardElement.setAttribute('data-id', i); 
+		cardElement.addEventListener('click',flipCard); 
+		document.getElementById('game-board').appendChild(cardElement); 
+	}
+
+}//end of createBoard function
+
+createBoard(); 
+
 
 

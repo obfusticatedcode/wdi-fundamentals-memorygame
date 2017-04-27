@@ -3,26 +3,35 @@
 
 var cards = ["queen", "queen", "king", "king"]; 
 var cardsInPlay = []; 
-var cardOne; 
-var cardTwo; 
 
-//using cardOne to hold the value of the first element in the cards array
-cardOne = cards[0]; 
-cardTwo = cards[2]; 
-//adding cardOne to the array via a push
-cardsInPlay.push(cardOne); 
-cardsInPlay.push(cardTwo); 
+//checkForMatch function
+var checkForMatch = function(){
 
-if (cardsInPlay.length === 2){
-	
 	if (cardsInPlay[0] === cardsInPlay[1]) {
 		alert("You found a match!"); 
-	} else {
+	} 
+	else {
 		alert("Sorry, try again"); 
 	}
+
+}//end of checkForMatch function
+
+
+//flip card function taking cardId parameter
+var flipCard = function(cardId){
+
+
+//push the cards[cardId] into the cardsInPlay array
+cardsInPlay.push(cards[cardId]);
+
+if (cardsInPlay.length === 2){
+	checkForMatch();
 }
-else {
-	alert("Choose two cards");
-}
-console.log(cardTwo); 
-console.log(cardOne); 
+//console to display card that was flipped over	
+console.log("You flipped " + cards[cardId]); 
+
+}//end of flipCard function
+
+//calling the flipCard function twice
+flipCard(0); 
+flipCard(2); 
